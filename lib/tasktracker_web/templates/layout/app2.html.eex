@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tasktracker · Phoenix Framework</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link href="<%= Routes.static_path(@conn, "/css/cover.css") %>" rel="stylesheet">
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-grey">
+            <div class="col-4">
+              <a class="navbar-brand" href="/">Task Tracker</a>
+            </div>
+            <div class="col-4 justify-content-center">
+              <ul class="nav nav-tabs">
+                <li class="nav-item active">
+                  <a class="nav-link" <%= link "Home", to: Routes.page_path(@conn, :index)%></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" <%= link "Tasks", to: Routes.task_path(@conn, :index)%></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" <%= link "Users", to: Routes.user_path(@conn, :index)%></a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-4 container-fluid">
+              <%= if @current_user do %>
+                <p class="my-3">
+                  User: <%= @current_user.email %> |
+                  <%= link("Logout", to: Routes.session_path(@conn, :delete),
+                    method: :delete) %>
+                </p>
+              <% else %>
+                 <button class="btn-dark"><%= link "Register new user", to: Routes.user_path(@conn, :new) %></button>
+                <%= form_for @conn, Routes.session_path(@conn, :create),
+                        [class: "form-inline"], fn f -> %>
+                  <%= text_input f, :email, class: "form-control" %>
+                  <%= submit "Login", class: "btn btn-secondary" %>
+                <% end %>
+              <% end %>
+            </div>
+          </nav>
+
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">TaskTracker</h1>
+        <p class="lead">Here we make tracking tasks simple.  Simply create a task, assign a user, and let us
+        help you keep track of where you spend your time.</p>
+        <p class="lead">
+          <a href="#" class="btn btn-lg btn-secondary">Lets do it</a>
+        </p>
+      </main>
+
+    <header>
+      <section class="container">
+        <a  class="tasktracker-logo">
+          <img src="<%= Routes.static_path(@conn, "/images/tasktracker.png") %>" alt="TaskTracker"/>
+        </a>
+      </section>
+    </header>
+
+    <main role="main" class="container">
+                <%= if get_flash(@conn, :info) do %>
+                  <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+                <% end %>
+                <%= if get_flash(@conn, :error) do %>
+                  <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+                <% end %>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>
