@@ -5,22 +5,23 @@
     </div>
   <% end %>
 
+
   <%= label f, :title %>
   <%= text_input f, :title %>
   <%= error_tag f, :title %>
-
+<br>
   <%= label f, :desc %>
   <%= text_input f, :desc %>
   <%= error_tag f, :desc %>
-
+<br>
   <%= label f, :assignee %>
-  <%= text_input f, :assignee %>
+  <%= select f, :assignee, @users, class: "form-control"%>
   <%= error_tag f, :assignee %>
-
+<br>
   <%= label f, :time %>
   <%= number_input f, :time %>
   <%= error_tag f, :time %>
-
+<br>
   <%= label f, :completed %>
   <%= checkbox f, :completed %>
   <%= error_tag f, :completed %>

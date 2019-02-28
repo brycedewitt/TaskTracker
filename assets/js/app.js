@@ -7,6 +7,7 @@ import "phoenix_html";
 import jQuery from 'jquery';
 window.jQuery = window.$ = jQuery;
 import "bootstrap";
+import _ from "lodash";
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured

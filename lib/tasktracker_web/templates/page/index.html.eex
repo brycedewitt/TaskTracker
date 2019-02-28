@@ -1,1 +1,27 @@
-<p>Hello</p>
+        <main role="main" class="inner cover">
+          <h1 class="cover-heading">TaskTracker.</h1>
+          <p class="lead">We make tracking your tasks as simple as possible.  Create a task, assign to a user, and
+          let us help you track where you spend your time.</p>
+          <p class="lead">
+            <a class="btn btn-lg btn-secondary" <%= link "Register New User", to: Routes.user_path(@conn, :new)%></a>
+            <%= if @current_user do %>
+                            <p class="my-3">
+                              Name: <%= @current_user.name %> |
+                              <%= link("Logout", to: Routes.session_path(@conn, :delete),
+                                method: :delete) %>
+                            </p>
+                          <% else %>
+                            <br>
+                            <p>or</p>
+                            <br>
+                            <p class="my-3">
+                            <%= form_for @conn, Routes.session_path(@conn, :create),
+                                    [class: "form-inline"], fn f -> %>
+                              <%= text_input f, :email, class: "form-control" %>
+                              <%= submit "Login", class: "btn btn-lg btn-secondary" %>
+                            <% end %>
+                          <% end %>
+                          </p>
+
+          </p>
+        </main>

@@ -4,8 +4,8 @@ defmodule Tasktracker.Users.User do
 
 
   schema "users" do
-    field :email, :string
-    field :name, :string
+    field :email, :string, null: false
+    field :name, :string, null: false
 
     timestamps()
   end
@@ -15,5 +15,6 @@ defmodule Tasktracker.Users.User do
     user
     |> cast(attrs, [:name, :email])
     |> validate_required([:name, :email])
+    |> validate_format(:email, ~r/@/)
   end
 end

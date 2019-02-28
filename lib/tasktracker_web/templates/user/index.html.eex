@@ -1,6 +1,7 @@
-<h1>Listing Users</h1>
+<h1>Show Users</h1>
 
 <table>
+<a class="btn btn-lg btn-secondary" <%= link "New User", to: Routes.user_path(@conn, :new) %></a>
   <thead>
     <tr>
       <th>Name</th>
@@ -24,5 +25,3 @@
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New User", to: Routes.user_path(@conn, :new) %></span>

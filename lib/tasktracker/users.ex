@@ -21,6 +21,22 @@ defmodule Tasktracker.Users do
     Repo.all(User)
   end
 
+  def list_users_names do
+    Repo.all(
+    from user in User,
+    select: user.name
+    )
+  end
+
+  def list_user_name(id) do
+    Repo.one(
+      from user in User,
+      select: user.name,
+      where: user.id == ^id
+    )
+  end
+
+
   @doc """
   Gets a single user.
 
@@ -36,6 +52,12 @@ defmodule Tasktracker.Users do
 
   """
   def get_user!(id), do: Repo.get!(User, id)
+
+  def get_user_by_email(email) do
+    Repo.get_by(User, email: email)
+  end
+
+  def get_user(id), do: Repo.get(User, id)
 
   @doc """
   Creates a user.

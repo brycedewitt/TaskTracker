@@ -1,6 +1,9 @@
-<h1>Listing Tasks</h1>
+<h1>All Tasks:</h1>
 
-<table>
+
+<table class="task-table">
+<a class="btn btn-lg btn-secondary" <%= link "New Task", to: Routes.task_path(@conn, :new) %></a>
+
   <thead>
     <tr>
       <th>Title</th>
@@ -30,5 +33,3 @@
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Task", to: Routes.task_path(@conn, :new) %></span>

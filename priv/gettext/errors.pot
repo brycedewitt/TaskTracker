@@ -52,8 +52,8 @@ msgid_plural "should be %{count} character(s)"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "should have %{count} item(s)"
-msgid_plural "should have %{count} item(s)"
+msgid "should have %{count} tasks(s)"
+msgid_plural "should have %{count} tasks(s)"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -63,7 +63,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "should have at least %{count} item(s)"
-msgid_plural "should have at least %{count} item(s)"
+msgid_plural "should have at least %{count} tasks(s)"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -73,7 +73,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "should have at most %{count} item(s)"
-msgid_plural "should have at most %{count} item(s)"
+msgid_plural "should have at most %{count} tasks(s)"
 msgstr[0] ""
 msgstr[1] ""
 

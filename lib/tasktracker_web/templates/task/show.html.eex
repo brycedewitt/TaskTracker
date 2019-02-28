@@ -1,4 +1,4 @@
-<h1>Show Task</h1>
+<h1>Current Task:</h1>
 
 <ul>
 
@@ -14,7 +14,7 @@
 
   <li>
     <strong>Assignee:</strong>
-    <%= @task.assignee %>
+    <%= @assignee %>
   </li>
 
   <li>
