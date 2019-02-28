@@ -1,33 +1,35 @@
 <h1>Current Task:</h1>
 
-<ul>
+<table class="task-table2">
+<thead>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @task.title %>
-  </li>
+</thead>
 
-  <li>
-    <strong>Description:</strong>
-    <%= @task.desc %>
-  </li>
-
-  <li>
-    <strong>Assignee:</strong>
-    <%= @assignee %>
-  </li>
-
-  <li>
-    <strong>Time:</strong>
-    <%= @task.time %>
-  </li>
-
-  <li>
-    <strong>Completed:</strong>
-    <%= @task.completed %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></span>
-<span><%= link "Back", to: Routes.task_path(@conn, :index) %></span>
+  <tbody>
+    <tr>
+      <th>Title:</th>
+      <th><%= @task.title %></th>
+    </tr>
+    <tr>
+      <th>Description:</th>
+      <th><%= @task.desc %></th>
+    </tr>
+    <tr>
+      <th>Assignee:</th>
+      <th><%= @assignee %></th>
+    </tr>
+    <tr>
+      <th>Time:</th>
+      <th><p><%= @task.time%> minutes</p></th>
+    </tr>
+    <tr>
+      <th>Completed:</th>
+      <th><%= @task.completed %></th>
+    </tr>
+  </tbody>
+<tbody>
+</tbody>
+</table>
+<br>
+<a class="btn btn-sm btn-info" <%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></a>
+<a class="btn btn-sm btn-secondary" <%= link "Back", to: Routes.task_path(@conn, :index) %></a>

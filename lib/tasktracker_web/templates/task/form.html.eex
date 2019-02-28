@@ -11,16 +11,16 @@
 
 
   <%= label f, :title %>
-  <%= text_input f, :title %>
+  <%= text_input f, :title, required: "required"%>
 <br>
   <%= label f, "Description" %>
-  <%= text_input f, :desc %>
+  <%= text_input f, :desc, required: "required"%>
 <br>
   <%= label f, :assignee %>
-  <%= select f, :assignee, @users, class: "form-control"%>
+  <%= select f, :assignee, @users, class: "form-control", required: "required"%>
 <br>
   <%= label f, :time %>
-  <%= number_input f, :time %>
+  <%= number_input f, :time, step: "15" %>
 <br>
   <%= label f, :completed %>
   <%= checkbox f, :completed %>

@@ -1,4 +1,4 @@
-<h1>Show Users</h1>
+<h1>Registered Users</h1>
 
 <table>
 <a class="btn btn-lg btn-secondary" <%= link "New User", to: Routes.user_path(@conn, :new) %></a>
@@ -6,8 +6,8 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
+      <th class="text-center">Options</th>
 
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +16,7 @@
       <td><%= user.name %></td>
       <td><%= user.email %></td>
 
-      <td>
+      <td class="text-center">
         <%= link "Show", to: Routes.user_path(@conn, :show, user) %>
         <%= link "Edit", to: Routes.user_path(@conn, :edit, user) %>
         <%= link "Delete", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %>
