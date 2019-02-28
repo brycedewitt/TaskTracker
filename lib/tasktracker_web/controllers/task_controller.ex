@@ -59,6 +59,20 @@ defmodule TasktrackerWeb.TaskController do
     end
   end
 
+  def update_status(conn, %{"id" => id}, :complete) do
+    task = Tasks.get_task!(id)
+    users = Users.list_users_names
+    case Tasks.update_task(task, :complete) do
+      {:ok, task} ->
+        conn
+        |> put_flash(:info, "Task updated successfully.")
+        |> redirect(to: Routes.task_path(conn, :show, task))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", task: task, changeset: changeset, users: users)
+    end
+  end
+
   def delete(conn, %{"id" => id}) do
     task = Tasks.get_task!(id)
     {:ok, _task} = Tasks.delete_task(task)

@@ -7,10 +7,11 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Desc</th>
+      <th>Description</th>
       <th>Assignee</th>
       <th>Time</th>
       <th>Completed</th>
+      <th>Options:</th>
 
       <th></th>
     </tr>
@@ -22,7 +23,13 @@
       <td><%= task.desc %></td>
       <td><%= task.assignee %></td>
       <td><%= task.time %></td>
-      <td><%= task.completed %></td>
+      <%= if task.completed == true do %>
+         <td><p class="text-center" style='font-size:28px;'>&#10003;</p></td>
+      <% else %>
+         <td><a class="btn btn-sm btn-secondary" <%= link "Mark Done", to: Routes.task_path(@conn, :edit, task)%></a></td>
+      <% end %>
+
+
 
       <td>
         <%= link "Show", to: Routes.task_path(@conn, :show, task) %>

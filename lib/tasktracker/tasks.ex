@@ -73,6 +73,12 @@ defmodule Tasktracker.Tasks do
     |> Repo.update()
   end
 
+  def update_task(%Task{} = task, :complete) do
+    task
+    |> Ecto.Changeset.change(%{completed: true})
+    |> Repo.update()
+  end
+
   @doc """
   Deletes a Task.
 

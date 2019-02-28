@@ -4,8 +4,9 @@
           let us help you track where you spend your time.</p>
           <p class="lead">
             <a class="btn btn-lg btn-secondary" <%= link "Register New User", to: Routes.user_path(@conn, :new)%></a>
+            <div class="cover-heading">
             <%= if @current_user do %>
-                            <p class="my-3">
+                            <p>
                               Name: <%= @current_user.name %> |
                               <%= link("Logout", to: Routes.session_path(@conn, :delete),
                                 method: :delete) %>
@@ -22,6 +23,7 @@
                             <% end %>
                           <% end %>
                           </p>
+                          </div>
 
           </p>
         </main>
