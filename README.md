@@ -1,0 +1,7 @@
+# Task Tracker, Part 2
+
+Design decisions:
+- Instead of redesigning the project migrations from the ground up for the redesign, I decided early on that there weren't enough updates to them that would warrent a full regeneration of user files.  Additionally, since this was a project meant to build off the previous one, I thought it would be largely simple to upgrade it.  Since I did get slightly turned around at points with regards to data structures and relations between the tables, I probably should have taken some time to think through how I needed the backend to function, but it never ended up being a significant issue.
+- Since this project was my first time using jQuery to execute AJAX requests, I had initially simply added scripts within the footer of the templates for only the pages that it needed to be used on.  After having to copy the same code onto several pages, I ended up simplifying the code and just hosting it within the `app.js` file only, which greatly simplified the project and was probably the correct decision from the start. 
+- To make the user interface more intuitive, I added more Bootstrap card formatting, which doesn't seem to be a big design decision. 
+- Since my project now supports managers that may want to browse their users beneath them, I should've revamped the login system more to support better browsing.  As it stands, only managers may access the menu to assign their underlings, but there was still greater opportunity to restrict access between the two user classes.
