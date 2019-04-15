@@ -5,6 +5,9 @@ defmodule Tasktracker.Tasks do
 
   import Ecto.Query, warn: false
   alias Tasktracker.Repo
+  alias Tasktracker.Users
+  alias Tasktracker.Time
+  alias Tasktracker.TimeBlocks
 
   alias Tasktracker.Tasks.Task
 
@@ -50,6 +53,7 @@ defmodule Tasktracker.Tasks do
 
   """
   def create_task(attrs \\ %{}) do
+
     %Task{}
     |> Task.changeset(attrs)
     |> Repo.insert()
@@ -77,6 +81,10 @@ defmodule Tasktracker.Tasks do
     task
     |> Ecto.Changeset.change(%{completed: true})
     |> Repo.update()
+  end
+
+  def get_task_by_user_id(id) do
+    Repo.all(from t in Task, where: t.assignee == ^id)
   end
 
   @doc """

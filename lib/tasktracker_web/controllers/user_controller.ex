@@ -3,6 +3,9 @@ defmodule TasktrackerWeb.UserController do
 
   alias Tasktracker.Users
   alias Tasktracker.Users.User
+  alias Tasktracker.Rosters
+  alias Tasktracker.Tasks
+
 
   def index(conn, _params) do
     users = Users.list_users()
@@ -15,6 +18,7 @@ defmodule TasktrackerWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
+    IO.inspect(user_params)
     case Users.create_user(user_params) do
       {:ok, user} ->
         conn
@@ -29,7 +33,23 @@ defmodule TasktrackerWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Users.get_user!(id)
-    render(conn, "show.html", user: user)
+    rosters =
+      Tasktracker.Rosters.get_underlings(id)
+      |> Enum.map(fn x -> Users.get_user!(x) end)
+
+    supervisors =
+      Tasktracker.Rosters.get_supervisors(id)
+      |> Enum.map(fn x -> Users.get_user!(x) end)
+
+    taskreport =
+      Tasktracker.Rosters.get_underlings(id)
+      |> Enum.map(fn x -> Tasks.get_task_by_user_id(Users.get_user!(x).name) end)
+      |> List.flatten()
+
+    tasks = Tasks.list_tasks()
+
+    IO.inspect(taskreport)
+    render(conn, "show.html", user: user, underlings: rosters, supervisor: supervisors, taskreport: taskreport, tasks: tasks)
   end
 
   def edit(conn, %{"id" => id}) do

@@ -20,7 +20,7 @@
       <td><%= task.title %></td>
       <td><%= task.desc %></td>
       <td><%= task.assignee %></td>
-      <td><%= task.time %></td>
+      <td><%= @timeblock %></td>
       <%= if task.completed == true do %>
          <td><p class="text-center" style='font-size:28px;'>&#10003;</p></td>
       <% else %>

@@ -1,0 +1,28 @@
+<h1>Listing Rosters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Supervisor</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for roster <- @rosters do %>
+    <tr>
+      <td><%= roster.user.name %></td>
+      <td><%= roster.supervisor.name %></td>
+
+      <td>
+        <%= link "Show", to: Routes.roster_path(@conn, :show, roster.user) %>
+        <%= link "Edit", to: Routes.roster_path(@conn, :edit, roster.user) %>
+        <%= link "Delete", to: Routes.roster_path(@conn, :delete, roster.user), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Roster", to: Routes.roster_path(@conn, :new) %></span>

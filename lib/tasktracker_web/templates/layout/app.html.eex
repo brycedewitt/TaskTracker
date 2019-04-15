@@ -14,9 +14,15 @@
           <div class="inner">
             <h3 class="masthead-brand">TaskTracker</h3>
             <nav class="nav justify-content-center">
-              <a class="nav-link color-black" <%= link "Home", to: Routes.page_path(@conn, :index)%></a>
-              <a class="nav-link color-black" <%= link "Tasks", to: Routes.task_path(@conn, :index)%></a>
-              <a class="nav-link color-black" <%= link "Users", to: Routes.user_path(@conn, :index)%></a>
+            <%= if @current_user do %>
+            <a class="nav-link color-black" <%= link "Home", to: Routes.page_path(@conn, :index)%></a>
+                          <a class="nav-link color-black" <%= link "Tasks", to: Routes.task_path(@conn, :index)%></a>
+                          <a class="nav-link color-black" <%= link "Users", to: Routes.user_path(@conn, :index)%></a>
+            <%= if @current_user.manager do %>
+
+                    <a class="nav-link color-black" <%= link "Roster", to: Routes.roster_path(@conn, :index)%></a>
+                <% end %>
+              <% end %>
                                     <div>
                                                           <%= if @current_user do %>
                                                               <button class="btn btn-lg btn-danger"
@@ -44,10 +50,7 @@
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
 
         <footer class="mastfoot mt-auto">
-          <div class="inner">
-            <p>A homework assignment for WebDev by <a href="https://github.com/bdewitt">Bryce DeWitt</a>.</p>
 
-          </div>
         </footer>
       </div>
 

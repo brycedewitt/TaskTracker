@@ -1,0 +1,18 @@
+<h1>Show Roster</h1>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @roster.user %>
+  </li>
+
+  <li>
+    <strong>Supervisor:</strong>
+    <%= @roster.supervisor %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.roster_path(@conn, :edit, @roster) %></span>
+<span><%= link "Back", to: Routes.roster_path(@conn, :index) %></span>

@@ -7,7 +7,6 @@ defmodule Tasktracker.Plugs.FetchSession do
 
 
   def call(conn, _args) do
-    IO.inspect(conn)
     user = Tasktracker.Users.get_user(get_session(conn, :user_id) || -1)
     if user do
       assign(conn, :current_user, user)

@@ -1,3 +1,5 @@
+
+
 <h1>Current Task:</h1>
 
 <table class="task-table2">
@@ -19,8 +21,12 @@
       <th><%= @assignee %></th>
     </tr>
     <tr>
-      <th>Time:</th>
-      <th><p><%= @task.time%> minutes</p></th>
+      <th>Start Time:</th>
+      <th><p><%= String.slice(Kernel.inspect(@timeblock.start), 11..30) %> </p></th>
+    </tr>
+    <tr>
+      <th>Stop Time:</th>
+      <th><p><%= String.slice(Kernel.inspect(@timeblock.stop), 11..30) %> </p></th>
     </tr>
     <tr>
       <th>Completed:</th>
@@ -33,3 +39,4 @@
 <br>
 <a class="btn btn-sm btn-info" <%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></a>
 <a class="btn btn-sm btn-secondary" <%= link "Back", to: Routes.task_path(@conn, :index) %></a>
+

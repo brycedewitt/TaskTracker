@@ -3,6 +3,7 @@
     <div class="alert alert-danger">
         <%= error_tag f, :email %>
         <%= error_tag f, :name %>
+        <%= error_tag f, :manager %>
     </div>
   <% end %>
 
@@ -11,6 +12,9 @@
 <br>
   <%= label f, :email %>
   <%= text_input f, :email, required: "required"%>
+<br>
+  <%= label f, :manager? %>
+  <%= checkbox f, :manager%>
 
   <div>
     <%= submit "Add This User" %>

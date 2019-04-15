@@ -36,6 +36,14 @@ defmodule Tasktracker.Users do
     )
   end
 
+  def list_user_name(array) do
+    Repo.all(
+      from user in User,
+      select: user.name,
+      where: user.id in ^array
+    )
+  end
+
 
   @doc """
   Gets a single user.

@@ -6,7 +6,7 @@ defmodule Tasktracker.Repo.Migrations.CreateTasks do
       add :title, :string
       add :desc, :string
       add :assignee, :string
-      add :time, :integer
+      add :timeblock_id, :integer
       add :completed, :boolean, default: false, null: false
 
       timestamps()

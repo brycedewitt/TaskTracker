@@ -13,12 +13,13 @@
         </p>
         <% else %>
         <br>
-        <p>or</p>
+        <h2>or</h2>
         <br>
             <p class="my-3">
             <%= form_for @conn, Routes.session_path(@conn, :create),
-            [class: "form-inline"], fn f -> %>
-            <%= text_input f, :email, class: "form-control" %>
+            [class: "form"], fn f -> %>
+            <%= text_input f, :email, class: "form-control", placeholder: "Enter registered user email here" %>
+            <br>
             <%= submit "Login", class: "btn btn-lg btn-secondary" %>
             <% end %>
         <% end %>

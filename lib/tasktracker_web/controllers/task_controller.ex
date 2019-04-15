@@ -6,22 +6,33 @@ defmodule TasktrackerWeb.TaskController do
   alias Tasktracker.Tasks
   alias Tasktracker.Tasks.Task
   alias Tasktracker.Users
+  alias Tasktracker.Rosters
+  alias Tasktracker.TimeBlocks
+  alias Tasktracker.Time
 
 
   def index(conn, _params) do
     tasks = Tasks.list_tasks()
-    render(conn, "index.html", tasks: tasks)
+    timeblock = "placeholder"
+    render(conn, "index.html", tasks: tasks, timeblock: timeblock)
   end
 
   def new(conn, _params) do
     changeset = Tasks.change_task(%Task{})
-    users = Users.list_users_names
+    users = Enum.map(Rosters.get_underlings(conn.assigns.current_user.id), fn x -> Users.get_user!(x).name end)
     render(conn, "new.html", changeset: changeset, users: users)
   end
 
   def create(conn, %{"task" => task_params}) do
+    starttime = Map.get(task_params, "starttime")
+    endtime = Map.get(task_params, "endtime")
+
     case Tasks.create_task(task_params) do
       {:ok, task} ->
+        taskid = task.id
+        IO.inspect("TaskID")
+        IO.inspect(taskid)
+        IO.inspect(TimeBlocks.create_time(starttime, endtime, taskid))
         conn
         |> put_flash(:info, "Task created successfully.")
         |> redirect(to: Routes.task_path(conn, :show, task))
@@ -33,8 +44,10 @@ defmodule TasktrackerWeb.TaskController do
 
   def show(conn, %{"id" => id}) do
     task = Tasks.get_task!(id)
+    timeblock = TimeBlocks.get_by_task(id)
+    IO.inspect(timeblock)
     assignee = Users.list_user_name(id)
-    render(conn, "show.html", task: task, assignee: assignee)
+    render(conn, "show.html", task: task, assignee: assignee, timeblock: timeblock)
   end
 
   def edit(conn, %{"id" => id}) do
